@@ -1,6 +1,12 @@
 import numpy as np
 import cv2
 
+# finds and draws keypoints using Harris corner detector
+def fdkeypoints(img, gray):
+    keypoints = computeHarris(gray, 5, 5000)
+    keypoints = [cv2.KeyPoint(x[1], x[0], 1) for x in keypoints]
+    img = cv2.drawKeypoints(img, keypoints, None, color=(0, 255, 0), flags=0)
+    return keypoints,img
 
 #   Function to compute the Harris Corner algorithm to find identify keypoints in image
 #   Returns a list of keypoints
